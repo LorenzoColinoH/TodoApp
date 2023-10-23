@@ -8,7 +8,7 @@ const Todo = ({todo}) => {
     const {setTodos, todos, userId} = useContexto()
     
     const deleteDB = async () => {
-        const request = await fetch(`http://10.0.2.2:3000/delete/${userId}/${todo.title}`, {
+        const request = await fetch(`https://todo-app-server-4qkl.onrender.com/delete/${userId}/${todo.title}`, {
             method: "DELETE"
         })
     }

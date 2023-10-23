@@ -1,56 +1,59 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {useEffect} from 'react'
 import Todo from "./Todo"
-import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Header from "./Header.js"
 import AddTodo from './AddTodo';
 import { useContexto } from './ContextProvider';
-import getRandomValues from 'react-native-get-random-values';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Todos = ({navigation}) => {
-    const {setTodos, todos, setUserId, userId} = useContexto()
-
+    const {setTodos, todos, setUserId, userId} = useContexto() 
     function generarNumeroAleatorio() {
         const numeroAleatorio = Math.random();
         const numeroEnRango = Math.floor(numeroAleatorio * 100000000) + 1;
         return numeroEnRango.toString();
       }
-    const storeData = async () => {
+
+    const getData = async () => {
         try {
-          await AsyncStorage.setItem("userId", generarNumeroAleatorio());
+          let value = await AsyncStorage.getItem("userId");
+          const datos = JSON.parse(value);
+          if (value !== null) {
+            return datos
+          } else {
+            storeData()
+          }
+        } catch (error) {
+          console.error('Error al recuperar datos:', error);
+        }
+      }; 
+      const storeData = async () => {
+        try {
+          const datos = JSON.stringify(generarNumeroAleatorio().toString())
+          await AsyncStorage.setItem("userId", datos);
+          getData()
           console.log('Datos almacenados con éxito.');
         } catch (error) {
           console.error('Error al almacenar datos:', error);
         }
       };
-    const getData = async () => {
-      try {
-        const value = await AsyncStorage.getItem("userId");
-        if (value !== null) {
-            setUserId(value)
-        } else {
-            storeData()
-        }
-      } catch (error) {
-        console.error('Error al recuperar datos:', error);
-      }
-    };  
     const getTodos = async () => {
-      console.log("Ejecutada")
-        const request = await fetch(`http://10.0.2.2:3000/todos/30844772`, {
+        const userIdd = await getData()
+        setUserId(userIdd)
+        const request = await fetch(`https://todo-app-server-4qkl.onrender.com/todos/${userIdd.toString()}`, {
           method: "GET"
       })
-      const data = await request.json()
-      console.log(data)
-      setTodos(data)
-  }  
+      console.log(request.status)
+      if (request.status === 200){
+        const data = await request.json()
+        setTodos(data)
+        console.log(data)
+      }
+  } 
   useEffect(()=>{
-      getData()
-      getTodos()
-  },[])  
+    getTodos()
+  }, [])
   return (
       <View style = {styles.container}>
       <Header /> 

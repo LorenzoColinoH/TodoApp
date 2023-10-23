@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Todos from "./components/Todos.js"
-import ContextProvider from "./components/ContextProvider.js"
+import ContextProvider, { useContexto } from "./components/ContextProvider.js"
+import { useEffect } from 'react';
 const Stack = createStackNavigator()
 
 export default function App() {

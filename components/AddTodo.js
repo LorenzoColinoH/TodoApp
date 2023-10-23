@@ -8,7 +8,7 @@ const AddTodo = ({toggle, setToggle}) => {
     const {setAddToggle, addToggle, setTodos, todos, userId} = useContexto()
     
     const pushTodo = async () => {
-        const request = await fetch("http://10.0.2.2:3000/newTodo", {
+        const request = await fetch("https://todo-app-server-4qkl.onrender.com/newTodo", {
             method: "POST",
             body: JSON.stringify({
                 title: inputTodo,

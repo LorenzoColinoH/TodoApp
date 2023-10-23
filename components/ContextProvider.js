@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {createContext, useContext, useEffect, useState} from 'react' 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Context = createContext(null)
 
