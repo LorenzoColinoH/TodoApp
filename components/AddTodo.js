@@ -35,13 +35,13 @@ const AddTodo = ({toggle, setToggle}) => {
       {
           addToggle ? (
             <View style = {{alignItems: "center"}}>
-                <TextInput style = {{padding: 20, width: "100%"}} placeholder='Add todo' value = {inputTodo} onChangeText={(text)=>setInputTodo(text)}/>
+                <TextInput style = {{ paddingVertical: 15,paddingHorizontal: 10, width: "90%",backgroundColor: "#f5f5f5", marginBottom: 20, marginTop: 30, borderRadius: 6}} placeholder='Add todo' value = {inputTodo} onChangeText={(text)=>setInputTodo(text)}/>
                 <View style = {{flexDirection: "row", justifyContent: "space-around", width: "100%"}}>
                     <TouchableOpacity onPress={()=>{if (inputTodo.length !== 0) {setAddToggle(prev => !prev);addTodo(); setInputTodo("")} else Alert.alert("Error", "Escribe un todo")}} style = {{borderRadius: 10, backgroundColor: "#2b81b3", padding: 8, paddingHorizontal: 40, width: 150, alignItems: "center"}}>
-                    <Text style = {{fontWeight: "bold", fontSize: 14, color: "white"}}>Add Todo</Text>
+                    <Text style = {{fontWeight: "500", fontSize: 16, color: "white"}}>Add Todo</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{setAddToggle(prev => !prev)}} style = {{borderRadius: 10, backgroundColor: "#cc0634", padding: 8, paddingHorizontal: 40, width: 150, alignItems: "center"}}>
-                    <Text style = {{fontWeight: "bold", fontSize: 15, color: "white"}}>Cancel</Text>
+                    <Text style = {{fontWeight: "500", fontSize: 16, color: "white"}}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
             </View>

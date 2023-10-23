@@ -20,9 +20,9 @@ const Todo = ({todo}) => {
     }
 
     return (
-    <View style = {{justifyContent: "space-between", marginTop: 15,paddingVertical: 4, marginHorizontal: 20, backgroundColor: "lightgray", flexDirection: "row", borderRadius: 10, paddingHorizontal: 10}}>
-        <Text style = {{fontWeight: 400, fontSize: 20}} >{todo.title}</Text>
-        <TouchableOpacity onPress={()=>{deleteTodo()}} activeOpacity={0.7}>
+    <View style = {{justifyContent: "space-between", marginTop: 15,paddingVertical: 12, marginHorizontal: 20, backgroundColor: "#f5f5f5", flexDirection: "row", borderRadius: 10, paddingHorizontal: 20}}>
+        <Text style = {{fontWeight: 400, fontSize: 22, color: "gray"}} >{todo.title}</Text>
+        <TouchableOpacity onPress={()=>{deleteTodo()}} activeOpacity={0.7} style = {{paddingHorizontal: 15, paddingVertical: 5}}>
             <MaterialCommunityIcons name="delete" size={24} color="#fa4349" />
         </TouchableOpacity>    
     </View>

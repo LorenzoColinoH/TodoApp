@@ -6,12 +6,12 @@ import { useContexto } from './ContextProvider'
 const Header = () => {
     const {setAddToggle, addToggle} = useContexto()
     return (
-        <View style = {{paddingHorizontal: 30, paddingTop: 40, justifyContent: "space-between", flexDirection: "row", alignItems: 'center'}}>
-            <Text style = {{fontWeight: "bold", fontFamily: "System", fontSize: 30}}>Todo List</Text>
+        <View style = {{paddingHorizontal: 30, paddingTop: 60, justifyContent: "space-between", flexDirection: "row", alignItems: 'center'}}>
+            <Text style = {{fontWeight: "600", fontFamily: "System", fontSize: 30}}>Todo List</Text>
             <TouchableOpacity onPress={()=>{setAddToggle(prev => !prev)}}>
                 {
-                   !addToggle ? (<Entypo name="plus" size={24} color="black" />) : 
-                   (<Entypo name="minus" size={24} color="black" />)
+                   !addToggle ? (<Entypo name="plus" size={30} color="black" />) : 
+                   (<Entypo name="minus" size={30} color="black" />)
                 }
             </TouchableOpacity>
         </View>

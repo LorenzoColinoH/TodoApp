@@ -5,6 +5,7 @@ import Header from "./Header.js"
 import AddTodo from './AddTodo';
 import { useContexto } from './ContextProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Todos = ({navigation}) => {
@@ -54,6 +55,7 @@ const Todos = ({navigation}) => {
   useEffect(()=>{
     getTodos()
   }, [])
+  console.log(todos.length)
   return (
       <View style = {styles.container}>
       <Header /> 
@@ -63,6 +65,18 @@ const Todos = ({navigation}) => {
           todos && todos.map((todo, index)=> (<Todo key={index} todo = {todo}/>))
         }
       </View>
+      { todos.length === 0 && 
+        (
+        <>
+          <View style = {{flex: 8, backgroundColor: "white", justifyContent: "center", alignItems: "center", flexDirection: "row"}}>
+            <Text style = {{fontSize: 33, color: "#dedede", paddingRight: 30}}>No entries</Text>
+            <Ionicons name="ios-sad" size={50} color="#dedede" />
+          </View>
+          <View style = {{flex:1}}/>
+        </>  
+
+        )
+      }
       <View style = {{width: "100%", backgroundColor: "red"}}>
       </View>
     </View>
